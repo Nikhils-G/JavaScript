@@ -1,0 +1,9 @@
+n=int(input("Enter= "))
+rev = 0
+while num > 0:
+  digit = n % 10
+  rev = rev * 10 + digit 
+  num = num // 10
+
+print(rev)
+  
