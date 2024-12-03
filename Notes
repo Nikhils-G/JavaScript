@@ -1,0 +1,7 @@
+PyTorch: An open-source machine learning framework that helps with research prototyping and production deployment 
+NumPy, Pandas, Matplotlib, and Seaborn: Used for data manipulation and visualization 
+Scikit-learn: Used for machine learning, including classification, regression, and clustering 
+Statsmodels: Used for statistical modeling, including descriptive statistics, tests, and plotting functions 
+H2O: A machine learning and predictive analytics platform that can construct machine learning models on big data 
+Virtual environments: Used to isolate project dependencies and prevent conflicts between different projects 
+Notebook platforms: Allow you to write code, view outputs, and add commentary 
