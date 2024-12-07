@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Particle Animation</title>
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+    }
+    canvas {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="particleCanvas"></canvas>
+  <script>
+    const canvas = document.getElementById("particleCanvas");
+    const ctx = canvas.getContext("2d");
+
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const particles = [];
+    const particleCount = 100;
+
+    class Particle {
+      constructor(x, y, speedX, speedY, radius, color) {
+        this.x = x;
+        this.y = y;
+        this.speedX = speedX;
+        this.speedY = speedY;
+        this.radius = radius;
+        this.color = color;
+      }
+
+      draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+        ctx.fillStyle = this.color;
+        ctx.fill();
+      }
+
+      update() {
+        this.x += this.speedX;
+        this.y += this.speedY;
+
+        if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+        if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+      }
+    }
+
+    function createParticles() {
+      for (let i = 0; i < particleCount; i++) {
+        const radius = Math.random() * 3 + 1;
+        const x = Math.random() * canvas.width;
+        const y = Math.random() * canvas.height;
+        const speedX = (Math.random() - 0.5) * 2;
+        const speedY = (Math.random() - 0.5) * 2;
+        const color = `rgba(255, 255, 255, ${Math.random()})`;
+        particles.push(new Particle(x, y, speedX, speedY, radius, color));
+      }
+    }
+
+    function connectParticles() {
+      for (let a = 0; a < particles.length; a++) {
+        for (let b = a + 1; b < particles.length; b++) {
+          const distance = Math.hypot(
+            particles[a].x - particles[b].x,
+            particles[a].y - particles[b].y
+          );
+          if (distance < 100) {
+            ctx.strokeStyle = `rgba(255, 255, 255, ${1 - distance / 100})`;
+            ctx.lineWidth = 0.5;
+            ctx.beginPath();
+            ctx.moveTo(particles[a].x, particles[a].y);
+            ctx.lineTo(particles[b].x, particles[b].y);
+            ctx.stroke();
+          }
+        }
+      }
+    }
+
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particles.forEach((particle) => {
+        particle.update();
+        particle.draw();
+      });
+      connectParticles();
+      requestAnimationFrame(animate);
+    }
+
+    window.addEventListener("resize", () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      particles.length = 0;
+      createParticles();
+    });
+
+    createParticles();
+    animate();
+  </script>
+</body>
+</html>
