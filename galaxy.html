@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cosmic Animation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: radial-gradient(circle, #000428, #004e92);
+            overflow: hidden;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+        }
+
+        canvas {
+            display: block;
+        }
+
+        .stars {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        .shooting-star {
+            position: absolute;
+            width: 2px;
+            height: 100px;
+            background: linear-gradient(to bottom, white, transparent);
+            animation: shooting 2s linear infinite;
+            transform: rotate(45deg);
+        }
+
+        @keyframes shooting {
+            0% {
+                opacity: 0;
+                transform: translate(0, 0) rotate(45deg);
+            }
+            50% {
+                opacity: 1;
+                transform: translate(100px, 100px) rotate(45deg);
+            }
+            100% {
+                opacity: 0;
+                transform: translate(200px, 200px) rotate(45deg);
+            }
+        }
+
+        .planet {
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle, #ff7e5f, #feb47b);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+            animation: orbit 10s linear infinite;
+        }
+
+        @keyframes orbit {
+            from {
+                transform: rotate(0deg) translateX(100px) rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg) translateX(100px) rotate(-360deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="stars"></div>
+
+    <script>
+        // Generate stars
+        const stars = document.querySelector('.stars');
+        for (let i = 0; i < 100; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            star.style.position = 'absolute';
+            star.style.width = `${Math.random() * 3}px`;
+            star.style.height = `${Math.random() * 3}px`;
+            star.style.backgroundColor = 'white';
+            star.style.borderRadius = '50%';
+            star.style.top = `${Math.random() * window.innerHeight}px`;
+            star.style.left = `${Math.random() * window.innerWidth}px`;
+            star.style.opacity = Math.random();
+            stars.appendChild(star);
+        }
+
+        // Add shooting stars
+        setInterval(() => {
+            const shootingStar = document.createElement('div');
+            shootingStar.className = 'shooting-star';
+            shootingStar.style.top = `${Math.random() * window.innerHeight}px`;
+            shootingStar.style.left = `${Math.random() * window.innerWidth}px`;
+            stars.appendChild(shootingStar);
+
+            setTimeout(() => shootingStar.remove(), 2000);
+        }, 1000);
+
+        // Add a moving planet
+        const planet = document.createElement('div');
+        planet.className = 'planet';
+        planet.style.width = '50px';
+        planet.style.height = '50px';
+        planet.style.top = 'calc(50% - 25px)';
+        planet.style.left = 'calc(50% - 25px)';
+        stars.appendChild(planet);
+    </script>
+</body>
+</html>
