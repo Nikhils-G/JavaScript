@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>A Love Letter for You</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to bottom right, #ff9a9e, #fad0c4);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: white;
+            overflow: hidden;
+        }
+
+        .container {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 20px;
+            border-radius: 10px;
+            width: 400px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        h1 {
+            font-size: 40px;
+            margin-bottom: 20px;
+            color: #FF69B4;
+            font-weight: bold;
+        }
+
+        .love-message {
+            font-size: 20px;
+            line-height: 1.6;
+            color: #FFD700;
+            margin-bottom: 30px;
+            animation: fadeInMessage 3s ease-out;
+        }
+
+        .reveal-btn {
+            background-color: #FF69B4;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 18px;
+            cursor: pointer;
+            border-radius: 5px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        .reveal-btn:hover {
+            background-color: #FF1493;
+        }
+
+        .hidden-message {
+            display: none;
+            font-size: 18px;
+            color: #FF6347;
+            font-style: italic;
+            margin-top: 20px;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
+        .show-message {
+            opacity: 1;
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInMessage {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>My Dearest Love</h1>
+        <p class="love-message">
+            Every moment spent with you feels like a beautiful dream. You are the light in my life,
+            the person who makes everything feel right, and the one I want to cherish forever.
+        </p>
+        <button class="reveal-btn" onclick="revealMessage()">Click to Reveal My Heart</button>
+        <p class="hidden-message" id="hiddenMessage">
+            My love for you is boundless, and with every heartbeat, I fall deeper and deeper in love with you.
+            You are my everything.
+        </p>
+    </div>
+
+    <script>
+        function revealMessage() {
+            var hiddenMessage = document.getElementById('hiddenMessage');
+            hiddenMessage.classList.add('show-message');
+        }
+    </script>
+</body>
+</html>
