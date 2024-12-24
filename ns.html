@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Visually Stunning "NikhilL" Animation</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: #141414;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            font-family: 'Arial', sans-serif;
+            color: white;
+            position: relative;
+        }
+
+        /* 3D Perspective for Name */
+        .container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            perspective: 1000px;
+            text-align: center;
+        }
+
+        /* Create the glowing effect on text */
+        .name {
+            display: inline-block;
+            font-size: 100px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            color: white;
+            background: linear-gradient(45deg, #ff4003, #ff00d4, #00d4ff, #00ff88);
+
+            -webkit-background-clip: text;
+            background-clip: text;
+            animation: gradientShift 4s ease-in-out infinite;
+            transform-style: preserve-3d;
+            animation: rotateText 5s ease-in-out infinite, glowingText 1.5s alternate infinite;
+            position: relative;
+        }
+
+        /* Glowing effect animation */
+        @keyframes glowingText {
+            0% {
+                text-shadow: 0 0 20px #ff00d4, 0 0 30px #ff00d4, 0 0 40px #00d4ff, 0 0 50px #00d4ff;
+            }
+            100% {
+                text-shadow: 0 0 10px #ff00d4, 0 0 20px #ff00d4, 0 0 30px #00d4ff, 0 0 40px #00d4ff;
+            }
+        }
+
+        /* Gradual shifting of the neon gradient */
+        @keyframes gradientShift {
+            0% {
+                background-position: 0 0;
+            }
+            100% {
+                background-position: 200% 200%;
+            }
+        }
+
+        /* 3D rotation effect */
+        @keyframes rotateText {
+            0% {
+                transform: rotateY(0deg);
+            }
+            50% {
+                transform: rotateY(360deg);
+            }
+            100% {
+                transform: rotateY(0deg);
+            }
+        }
+
+        /* Particle animation */
+        .particles {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .particle {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: #00ff88;
+            animation: particleMovement 2s infinite ease-out;
+        }
+
+        /* Random particle movement */
+        @keyframes particleMovement {
+            0% {
+                opacity: 1;
+            }
+            100% {
+                transform: translate(calc(100px * (random() - 0.5)), calc(100px * (random() - 0.5)));
+                opacity: 0;
+            }
+        }
+
+        /* Scale up animation */
+        .name span {
+            display: inline-block;
+            opacity: 0;
+            animation: revealLetters 2s ease-in-out forwards;
+        }
+
+        /* Reveal letter animation */
+        @keyframes revealLetters {
+            0% {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            50% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="name">
+            <span>N</span>
+            <span>i</span>
+            <span>k</span>
+            <span>h</span>
+            <span>i</span>
+            <span>l</span>
+            <span>L</span>
+        </div>
+    </div>
+
+    <div class="particles">
+        <!-- Create random particles that appear around the name -->
+        <div class="particle" style="animation-delay: 0s;"></div>
+        <div class="particle" style="animation-delay: 0.2s;"></div>
+        <div class="particle" style="animation-delay: 0.4s;"></div>
+        <div class="particle" style="animation-delay: 0.6s;"></div>
+        <div class="particle" style="animation-delay: 0.8s;"></div>
+        <div class="particle" style="animation-delay: 1s;"></div>
+    </div>
+
+    <script>
+        window.onload = function () {
+            // Delay the reveal of each letter
+            let letters = document.querySelectorAll('.name span');
+            let delay = 0;
+            letters.forEach(function (letter) {
+                letter.style.animationDelay = `${delay}s`;
+                delay += 0.2;
+            });
+        };
+    </script>
+</body>
+</html>
