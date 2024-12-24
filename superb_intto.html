@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Emotional Love Letter</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #ff9a9e, #f7c7a3);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Arial', sans-serif;
+            overflow: hidden;
+        }
+
+        .container {
+            position: relative;
+            width: 400px;
+            height: 500px;
+            background-color: #fff;
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            position: relative;
+            transform: scale(0.9);
+            animation: fadeIn 2s ease-out;
+        }
+
+        .letter-text {
+            font-size: 18px;
+            color: #FF6347;
+            opacity: 0;
+            line-height: 1.6;
+            animation: textAppear 5s 1s forwards;
+        }
+
+        .scissors {
+            position: absolute;
+            top: 30%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 50px;
+            background: url('https://cdn.pixabay.com/photo/2017/08/30/01/13/scissors-2693307_960_720.png') no-repeat center center;
+            background-size: contain;
+            animation: scissorsCut 5s 1s forwards;
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: scale(0.5);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes scissorsCut {
+            0% {
+                transform: translateX(-50%) translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateX(-50%) translateY(50%) rotate(45deg);
+            }
+            100% {
+                transform: translateX(-50%) translateY(100%) rotate(90deg);
+            }
+        }
+
+        @keyframes textAppear {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        .cut-paper {
+            position: absolute;
+            top: 45%;
+            left: 50%;
+            width: 100%;
+            height: 10px;
+            background-color: #f8d7da;
+            transform: translateX(-50%);
+            animation: cutPaperEffect 5s forwards;
+        }
+
+        @keyframes cutPaperEffect {
+            0% {
+                width: 100%;
+            }
+            50% {
+                width: 0;
+            }
+            100% {
+                width: 0;
+            }
+        }
+
+        .hidden-message {
+            display: none;
+            font-size: 22px;
+            font-family: 'Cursive', sans-serif;
+            color: #fff;
+            text-align: center;
+            position: absolute;
+            top: 70%;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0;
+            animation: hiddenMessageReveal 3s 5s forwards;
+        }
+
+        @keyframes hiddenMessageReveal {
+            0% {
+                opacity: 0;
+                transform: translateX(-50%) translateY(30px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(-50%) translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>ప్రియమైన అనుస్రీ</h1>
+        <div class="letter-text">
+            నిన్ను ఎప్పుడూ మర్చిపోలేను. నా జీవితంలో నీరాజన్మం లాంటి అనుభవం కలగడం నాకు ఎంతో అదృష్టం. 
+            ప్రతి క్షణం నీతో గడపడం అనేది నా కల. నువ్వు నా హృదయానికి హార్మనీ.
+        </div>
+        <div class="cut-paper"></div>
+        <div class="scissors"></div>
+        <div class="hidden-message">
+            నా ప్రాణం! నీ ప్రేమ నా జీవితం. నీ వెనుక స్నేహం, నీ దృష్టి ప్రియం.
+            ఎప్పటికీ నీ ప్రేమలో ఉండాలని కోరుకుంటున్నాను.
+        </div>
+    </div>
+
+    <script>
+        window.onload = function() {
+            setTimeout(function() {
+                document.querySelector('.letter-text').style.opacity = 1;
+                document.querySelector('.hidden-message').style.display = 'block';
+            }, 5000);
+        }
+    </script>
+</body>
+</html>
