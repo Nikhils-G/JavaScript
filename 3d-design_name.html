@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Premium Name Animation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #101010;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: 'Segoe UI', sans-serif;
+            overflow: hidden;
+        }
+
+        .container {
+            position: relative;
+            text-align: center;
+        }
+
+        .name {
+            font-size: 100px;
+            font-weight: 900;
+            color: transparent;
+            text-transform: uppercase;
+            letter-spacing: 6px;
+            background: linear-gradient(45deg, #d1b03e, #f1c04d);
+            background-clip: text;
+            animation: gradientShift 3s infinite, moveIn 2s ease-out;
+            position: relative;
+        }
+
+        /* Smooth gradient shifting */
+        @keyframes gradientShift {
+            0% { background-position: -200% 0; }
+            50% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+
+        /* Text move-in effect */
+        @keyframes moveIn {
+            0% { opacity: 0; transform: translateY(50px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        .glow {
+            text-shadow: 0 0 12px rgba(255, 255, 255, 0.8), 0 0 40px rgba(255, 215, 0, 0.6);
+        }
+
+        /* Particle Background */
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .particle {
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background-color: #f1c04d;
+            opacity: 0;
+            animation: moveParticle 3s ease-out infinite;
+        }
+
+        @keyframes moveParticle {
+            0% { opacity: 1; transform: translate(0, 0); }
+            100% { opacity: 0; transform: translate(calc(150px * (random() - 0.5)), calc(150px * (random() - 0.5))); }
+        }
+
+        /* Smooth hover effect */
+        .container:hover .name {
+            text-shadow: 0 0 25px rgba(255, 215, 0, 0.8), 0 0 60px rgba(255, 215, 0, 0.6);
+        }
+
+        @media (max-width: 768px) {
+            .name {
+                font-size: 80px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .name {
+                font-size: 60px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="name glow">NikhilL</div>
+    </div>
+
+    <div class="particles">
+        <div class="particle" style="top: 15%; left: 20%;"></div>
+        <div class="particle" style="top: 25%; left: 50%;"></div>
+        <div class="particle" style="top: 35%; left: 80%;"></div>
+        <div class="particle" style="top: 50%; left: 60%;"></div>
+        <div class="particle" style="top: 65%; left: 30%;"></div>
+        <div class="particle" style="top: 75%; left: 40%;"></div>
+    </div>
+
+    <script>
+        window.onload = () => {
+            const particles = document.querySelectorAll('.particle');
+            particles.forEach(p => {
+                p.style.animationDelay = `${Math.random() * 3}s`;
+            });
+        };
+    </script>
+
+</body>
+</html>
