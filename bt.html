@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flying Butterflies</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            background: linear-gradient(120deg, #ff9a9e, #fad0c4, #fbc2eb, #a1c4fd);
+            background-size: 400% 400%;
+            animation: gradient 10s ease infinite;
+        }
+
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .butterfly {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background: url('C:\\Users\\Nikhil Sukthe\\Downloads\\ns.png') no-repeat center center / contain;
+            animation: fly linear infinite;
+        }
+
+        @keyframes fly {
+            0% {
+                transform: translate(0, 0) rotate(0deg);
+            }
+            25% {
+                transform: translate(-30px, -60px) rotate(45deg);
+            }
+            50% {
+                transform: translate(30px, -120px) rotate(-45deg);
+            }
+            75% {
+                transform: translate(-30px, -180px) rotate(45deg);
+            }
+            100% {
+                transform: translate(0, 0) rotate(0deg);
+            }
+        }
+
+        .sparkle {
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            background: white;
+            border-radius: 50%;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+            animation: sparkle 3s linear infinite;
+        }
+
+        @keyframes sparkle {
+            0% {
+                transform: translate(0, 0) scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: translate(-10px, -20px) scale(0.5);
+                opacity: 0.5;
+            }
+            100% {
+                transform: translate(10px, 20px) scale(1);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <script>
+        const butterflyCount = 20;
+        const sparkleCount = 50;
+        const butterflies = [];
+        const body = document.body;
+
+        for (let i = 0; i < butterflyCount; i++) {
+            const butterfly = document.createElement('div');
+            butterfly.className = 'butterfly';
+            butterfly.style.top = `${Math.random() * window.innerHeight}px`;
+            butterfly.style.left = `${Math.random() * window.innerWidth}px`;
+            butterfly.style.animationDuration = `${2 + Math.random() * 3}s`;
+            butterflies.push(butterfly);
+            body.appendChild(butterfly);
+        }
+
+        for (let i = 0; i < sparkleCount; i++) {
+            const sparkle = document.createElement('div');
+            sparkle.className = 'sparkle';
+            sparkle.style.top = `${Math.random() * window.innerHeight}px`;
+            sparkle.style.left = `${Math.random() * window.innerWidth}px`;
+            sparkle.style.animationDuration = `${1 + Math.random() * 2}s`;
+            body.appendChild(sparkle);
+        }
+
+        function moveButterflies() {
+            butterflies.forEach(butterfly => {
+                butterfly.style.top = `${Math.random() * window.innerHeight}px`;
+                butterfly.style.left = `${Math.random() * window.innerWidth}px`;
+            });
+        }
+
+        setInterval(moveButterflies, 5000);
+    </script>
+</body>
+</html>
