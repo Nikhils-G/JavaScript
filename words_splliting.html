@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" 
+          content="width=device-width, 
+                   initial-scale=1.0" />
+    <title>Dynamic Word Spin</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 48px;
+        }
+
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        h1 {
+            display: inline-block;
+        }
+
+        .text-container {
+            display: inline-flex;
+            flex-direction: column;
+            height: 2.5rem;
+            overflow: hidden;
+        }
+
+        .text-container span {
+            height: 2.3rem;
+            color: rgb(14, 42, 196);
+            animation: moveUp 10s linear infinite;
+        }
+
+        @keyframes moveUp {
+            0% {
+                transform: translateY(0);
+            }
+
+            5% {
+                transform: translateY(0);
+            }
+
+            15% {
+                transform: translateY(-2.3rem);
+            }
+
+            25% {
+                transform: translateY(-2.3rem);
+            }
+
+            35% {
+                transform: translateY(-4.6rem);
+            }
+
+            45% {
+                transform: translateY(-4.6rem);
+            }
+
+            55% {
+                transform: translateY(-6.9rem);
+            }
+
+            65% {
+                transform: translateY(-6.9rem);
+            }
+
+            75% {
+                transform: translateY(-9.2rem);
+            }
+
+            95% {
+                transform: translateY(-9.2rem);
+            }
+
+            100% {
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <h1>
+        I love
+        <div class="text-container">
+            <span style="--i: 0">Cricket</span>
+            <span style="--i: 1">Football</span>
+            <span style="--i: 2">Hockey</span>
+            <span style="--i: 3">Food</span>
+            <span style="--i: 4">Travel</span>
+        </div>
+    </h1>
+</body>
+
+</html>
