@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Combined Spinners</title>
+    <!-- <link rel="stylesheet" href="styles.css" /> -->
+    <style>
+        /* Write CSS Here */
+        body,
+        html {
+            width: 100vw;
+            height: 100vh;
+            margin: 0;
+            background-color: #f5f5f5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: "Arial", sans-serif;
+            color: #333;
+        }
+
+        #container {
+            width: 90%;
+            max-width: 700px;
+            margin: 1em auto;
+            position: relative;
+        }
+
+        /* Loader 1 */
+        .loader.loader1,
+        .loader.loader1:before,
+        .loader.loader1:after {
+            background: #ff5733;
+            /* New color */
+            animation: load1 1s infinite ease-in-out;
+            width: 1em;
+            height: 4em;
+        }
+
+        .loader.loader1 {
+            color: #ffffff;
+            text-indent: -9999em;
+            margin: 88px auto;
+            position: relative;
+            font-size: 11px;
+            transform: translateZ(0);
+            animation-delay: -0.16s;
+        }
+
+        .loader.loader1:before,
+        .loader.loader1:after {
+            position: absolute;
+            top: 0;
+            content: "";
+        }
+
+        .loader.loader1:before {
+            left: -1.5em;
+            animation-delay: -0.32s;
+        }
+
+        .loader.loader1:after {
+            left: 1.5em;
+        }
+
+        @keyframes load1 {
+
+            0%,
+            80%,
+            100% {
+                box-shadow: 0 0;
+                height: 4em;
+            }
+
+            40% {
+                box-shadow: 0 -2em;
+                height: 5em;
+            }
+        }
+
+        /* Loader 2 */
+        .loader.loader2,
+        .loader.loader2:before,
+        .loader.loader2:after {
+            border-radius: 50%;
+        }
+
+        .loader.loader2 {
+            color: #ffffff;
+            font-size: 11px;
+            text-indent: -99999em;
+            margin: 55px auto;
+            position: relative;
+            width: 10em;
+            height: 10em;
+            box-shadow: inset 0 0 0 1em;
+            transform: translateZ(0);
+        }
+
+        .loader.loader2:before,
+        .loader.loader2:after {
+            position: absolute;
+            content: "";
+        }
+
+        .loader.loader2:before {
+            width: 5.2em;
+            height: 10.2em;
+            background: #3498db;
+            /* New color */
+            border-radius: 10.2em 0 0 10.2em;
+            top: -0.1em;
+            left: -0.1em;
+            transform-origin: 5.1em 5.1em;
+            animation: load2 2s infinite ease 1.5s;
+        }
+
+        .loader.loader2:after {
+            width: 5.2em;
+            height: 10.2em;
+            background: #3498db;
+            /* New color */
+            border-radius: 0 10.2em 10.2em 0;
+            top: -0.1em;
+            left: 4.9em;
+            transform-origin: 0.1em 5.1em;
+            animation: load2 2s infinite ease;
+        }
+
+        @keyframes load2 {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Loader positioning */
+        .loader.loader1 {
+            position: absolute;
+            top: 50%;
+            left: 25%;
+            transform: translate(-50%, -50%);
+        }
+
+        .loader.loader2 {
+            position: absolute;
+            top: 50%;
+            left: 75%;
+            transform: translate(-50%, -50%);
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container">
+        <!-- Loader 1 -->
+        <div class="loader loader1">Loading...</div>
+
+        <!-- Loader 2 -->
+        <div class="loader loader2">Loading...</div>
+    </div>
+</body>
+
+</html>
