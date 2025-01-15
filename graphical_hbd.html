@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Mandala</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: #2c3e50; /* Dark background for contrast */
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-family: 'Helvetica Neue', sans-serif;
+        }
+
+        /* Mandala Background */
+        .mandala-background {
+            position: absolute;
+            width: 150vmin;
+            height: 150vmin;
+            background: conic-gradient(from 45deg, #f39c12, #8e44ad, #3498db, #e74c3c, #2ecc71);
+            border-radius: 50%;
+            animation: spinMandala 10s linear infinite;
+            opacity: 0.5;
+            z-index: 1;
+        }
+
+        @keyframes spinMandala {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Main Birthday Text */
+        .birthday-text {
+            font-size: 4rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            text-align: center;
+            z-index: 2;
+            text-shadow: 0px 0px 30px rgba(255, 255, 255, 0.8), 0px 0px 40px rgba(255, 255, 255, 0.5);
+            animation: fadeInText 2s ease-out forwards;
+        }
+
+        @keyframes fadeInText {
+            0% {
+                opacity: 0;
+                transform: scale(0.5);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* Decorative Elements */
+        .decorative-element {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100px;
+            height: 100px;
+            background-color: #f39c12;
+            border-radius: 50%;
+            animation: pulse 1.5s ease-out infinite;
+            opacity: 0.7;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(0.8);
+                opacity: 0.7;
+            }
+            50% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(0.8);
+                opacity: 0.7;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Mandala Background -->
+    <div class="mandala-background"></div>
+
+    <!-- Main Birthday Text -->
+    <div class="birthday-text">
+        Happy Birthday!
+    </div>
+
+    <!-- Decorative Element (For extra flair) -->
+    <div class="decorative-element"></div>
+
+</body>
+</html>
