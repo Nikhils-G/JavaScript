@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>3D Rotating Cube with Images</title>
+  <style>
+    /* Basic Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+      background-size: 400% 400%;
+      animation: gradientBG 15s ease infinite;
+    }
+
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .scene {
+      width: 200px;
+      height: 200px;
+      perspective: 600px;
+    }
+
+    .cube {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      transform-style: preserve-3d;
+      transform: rotateX(-15deg) rotateY(15deg);
+      animation: rotate 10s infinite linear;
+    }
+
+    .cube__face {
+      position: absolute;
+      width: 200px;
+      height: 200px;
+      background-size: cover;
+      background-position: center;
+      border: 2px solid rgba(255, 255, 255, 0.5);
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+      opacity: 0.9;
+    }
+
+    .cube__face--front  { transform: rotateY(0deg) translateZ(100px); background-image: url('https://via.placeholder.com/200x200/FF6F61/FFFFFF?text=Front'); }
+    .cube__face--right  { transform: rotateY(90deg) translateZ(100px); background-image: url('https://via.placeholder.com/200x200/6B5B95/FFFFFF?text=Right'); }
+    .cube__face--back   { transform: rotateY(180deg) translateZ(100px); background-image: url('https://via.placeholder.com/200x200/88B04B/FFFFFF?text=Back'); }
+    .cube__face--left   { transform: rotateY(-90deg) translateZ(100px); background-image: url('https://via.placeholder.com/200x200/FFA500/FFFFFF?text=Left'); }
+    .cube__face--top    { transform: rotateX(90deg) translateZ(100px); background-image: url('https://via.placeholder.com/200x200/92A8D1/FFFFFF?text=Top'); }
+    .cube__face--bottom { transform: rotateX(-90deg) translateZ(100px); background-image: url('https://via.placeholder.com/200x200/955251/FFFFFF?text=Bottom'); }
+
+    @keyframes rotate {
+      from { transform: rotateX(0) rotateY(0); }
+      to { transform: rotateX(360deg) rotateY(360deg); }
+    }
+
+    /* Interactive Mouse Controls */
+    .scene:hover .cube {
+      animation: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="scene">
+    <div class="cube">
+      <div class="cube__face cube__face--front"></div>
+      <div class="cube__face cube__face--back"></div>
+      <div class="cube__face cube__face--right"></div>
+      <div class="cube__face cube__face--left"></div>
+      <div class="cube__face cube__face--top"></div>
+      <div class="cube__face cube__face--bottom"></div>
+    </div>
+  </div>
+
+  <script>
+    // JavaScript for Interactive Mouse Controls
+    const scene = document.querySelector('.scene');
+    const cube = document.querySelector('.cube');
+
+    scene.addEventListener('mousemove', (e) => {
+      const { clientX, clientY } = e;
+      const { left, top, width, height } = scene.getBoundingClientRect();
+      const x = (clientX - left) / width - 0.5;
+      const y = (clientY - top) / height - 0.5;
+
+      cube.style.transform = `rotateX(${y * 180}deg) rotateY(${x * 180}deg)`;
+    });
+
+    scene.addEventListener('mouseleave', () => {
+      cube.style.transform = 'rotateX(-15deg) rotateY(15deg)';
+    });
+  </script>
+</body>
+</html>
