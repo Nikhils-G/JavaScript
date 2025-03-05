@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Video Player</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .video-container {
+            width: 80%;
+            max-width: 800px;
+            background: #000;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            position: relative;
+        }
+        video {
+            width: 100%;
+            display: block;
+        }
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 10px;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            box-sizing: border-box;
+            transition: opacity 0.5s;
+        }
+        .controls button {
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .controls button:hover {
+            color: #ccc;
+        }
+        .controls input[type="range"] {
+            -webkit-appearance: none;
+            appearance: none;
+            background: rgba(255, 255, 255, 0.3);
+            height: 5px;
+            border-radius: 5px;
+            outline: none;
+        }
+        .controls input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 15px;
+            height: 15px;
+            background: #fff;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+        .controls input[type="range"]::-moz-range-thumb {
+            width: 15px;
+            height: 15px;
+            background: #fff;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+        .time {
+            color: #fff;
+            font-size: 14px;
+            margin: 0 10px;
+        }
+        .fullscreen {
+            margin-left: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="video-container">
+        <video id="videoPlayer">
+            <source src="Suzhal S01E01.mkv" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="controls">
+            <button id="playPauseBtn">⏯️</button>
+            <input type="range" id="seekBar" min="0" max="100" value="0">
+            <span class="time" id="currentTime">0:00</span> / <span class="time" id="duration">0:00</span>
+            <input type="range" id="volumeBar" min="0" max="2" step="0.1" value="1">
+            <button id="fullscreenBtn">⛶</button>
+        </div>
+    </div>
+
+    <script>
+        const video = document.getElementById('videoPlayer');
+        const playPauseBtn = document.getElementById('playPauseBtn');
+        const seekBar = document.getElementById('seekBar');
+        const currentTime = document.getElementById('currentTime');
+        const duration = document.getElementById('duration');
+        const volumeBar = document.getElementById('volumeBar');
+        const fullscreenBtn = document.getElementById('fullscreenBtn');
+
+        video.addEventListener('timeupdate', updateSeekBar);
+        video.addEventListener('loadedmetadata', setDuration);
+        video.addEventListener('ended', resetPlayPauseButton);
+
+        playPauseBtn.addEventListener('click', togglePlayPause);
+        seekBar.addEventListener('input', setVideoTime);
+        volumeBar.addEventListener('input', setVolume);
+        fullscreenBtn.addEventListener('click', toggleFullscreen);
+
+        function togglePlayPause() {
+            if (video.paused) {
+                video.play();
+                playPauseBtn.textContent = '⏸️';
+            } else {
+                video.pause();
+                playPauseBtn.textContent = '⏯️';
+            }
+        }
+
+        function updateSeekBar() {
+            const value = (video.currentTime / video.duration) * 100;
+            seekBar.value = value;
+            currentTime.textContent = formatTime(video.currentTime);
+        }
+
+        function setVideoTime() {
+            const time = (seekBar.value / 100) * video.duration;
+            video.currentTime = time;
+        }
+
+        function setDuration() {
+            duration.textContent = formatTime(video.duration);
+        }
+
+        function setVolume() {
+            video.volume = volumeBar.value;
+        }
+
+        function toggleFullscreen() {
+            if (!document.fullscreenElement) {
+                video.requestFullscreen().catch(err => {
+                    alert(`Error attempting to enable full-screen mode: ${err.message} (${err.name})`);
+                });
+            } else {
+                document.exitFullscreen();
+            }
+        }
+
+        function resetPlayPauseButton() {
+            playPauseBtn.textContent = '⏯️';
+        }
+
+        function formatTime(time) {
+            const minutes = Math.floor(time / 60);
+            const seconds = Math.floor(time % 60);
+            return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+        }
+    </script>
+</body>
+</html>
